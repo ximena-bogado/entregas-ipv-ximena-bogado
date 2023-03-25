@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bi8fxfr351wv5"]
+
+[ext_resource type="Texture2D" uid="uid://dpwmpbo5mhrhp" path="res://art/enemyFlyingAlt_1.png" id="1_bawma"]
+[ext_resource type="Script" path="res://mob.gd" id="1_ph8lo"]
+[ext_resource type="Texture2D" uid="uid://drrd3wycnls4h" path="res://art/enemyFlyingAlt_2.png" id="2_g1hpj"]
+[ext_resource type="Texture2D" uid="uid://dpfk6dppfykc8" path="res://art/enemySwimming_1.png" id="3_2nltj"]
+[ext_resource type="Texture2D" uid="uid://cwo6t6elun5hl" path="res://art/enemySwimming_2.png" id="4_moiy5"]
+[ext_resource type="Texture2D" uid="uid://njl0plvw56ug" path="res://art/enemyWalking_1.png" id="5_3hia1"]
+[ext_resource type="Texture2D" uid="uid://c3yanenjssk68" path="res://art/enemyWalking_2.png" id="6_0vraw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5g0ft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bawma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g1hpj")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2nltj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_moiy5")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3hia1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0vraw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ci8v"]
+radius = 36.0
+height = 100.0
+
+[node name="Mob" type="RigidBody2D"]
+position = Vector2(74, 68)
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ph8lo")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_5g0ft")
+animation = &"walk"
+frame = 1
+frame_progress = 0.195354
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5ci8v")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.5, -1)
+scale = Vector2(3.95, 5.1)
+metadata/_edit_group_ = true
