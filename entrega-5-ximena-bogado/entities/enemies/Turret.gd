@@ -1,4 +1,4 @@
-extends Sprite
+extends StaticBody2D
 
 onready var fire_position = $FirePosition
 onready var fire_timer = $FireTimer
