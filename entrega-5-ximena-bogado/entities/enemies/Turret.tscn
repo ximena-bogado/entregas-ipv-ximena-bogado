@@ -12,6 +12,7 @@ height = 32.0
 radius = 529.024
 
 [node name="Turret" type="StaticBody2D"]
+collision_layer = 4
 script = ExtResource( 2 )
 projectile_scene = ExtResource( 3 )
 
