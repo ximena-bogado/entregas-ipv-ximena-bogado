@@ -1,7 +1,8 @@
-extends StaticBody2D
+extends Area2D
 
 onready var fire_position = $FirePosition
 onready var fire_timer = $FireTimer
+signal hit
 
 export (PackedScene) var projectile_scene
 
@@ -43,3 +44,8 @@ func _on_DetectionArea_body_exited(body):
 	if body == target:
 		target = null
 		fire_timer.stop()
+
+
+func _on_Turret_area_entered(area):
+	queue_free()
+	emit_signal("hit")

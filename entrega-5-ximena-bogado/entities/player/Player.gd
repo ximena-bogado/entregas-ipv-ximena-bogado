@@ -46,5 +46,7 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	move_and_slide(velocity, Vector2.UP)
 
-func _on_DetectionArea_area_entered(area):
+func _on_DetectionArea_area_entered(area: Area2D):
 	queue_free()
+	emit_signal("hit")
+
