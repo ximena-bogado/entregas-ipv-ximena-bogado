@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/entities/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/background/Layer_0010_1.png" type="Texture" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/enemies/Turret.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/entities/enemies/TurretsSpawner.gd" type="Script" id=5]
+[ext_resource path="res://src/enviroment/Platform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/enviroment/Trophy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/enviroment/Obstacle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/enviroment/Floor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/enviroment/Wall.tscn" type="PackedScene" id=11]
+
+[node name="Main" type="Node"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Environment" type="Node2D" parent="."]
+position = Vector2( 0, 2 )
+
+[node name="Ground" type="Node2D" parent="Environment"]
+
+[node name="Floor" parent="Environment/Ground" instance=ExtResource( 10 )]
+position = Vector2( 1381.51, 568.622 )
+
+[node name="Floor2" parent="Environment/Ground" instance=ExtResource( 10 )]
+position = Vector2( 725.506, 568.622 )
+
+[node name="Floor3" parent="Environment/Ground" instance=ExtResource( 10 )]
+position = Vector2( 69.506, 568.622 )
+
+[node name="Wall" parent="Environment/Ground" instance=ExtResource( 11 )]
+position = Vector2( 31, 316 )
+
+[node name="Platform" parent="Environment/Ground" instance=ExtResource( 6 )]
+position = Vector2( 1429.51, 224.622 )
+
+[node name="Platform2" parent="Environment/Ground" instance=ExtResource( 6 )]
+position = Vector2( 1685.51, 264.622 )
+
+[node name="Platform3" parent="Environment/Ground" instance=ExtResource( 6 )]
+position = Vector2( 1541.51, 416.622 )
+
+[node name="Platform4" parent="Environment/Ground" instance=ExtResource( 6 )]
+position = Vector2( 412, 438 )
+
+[node name="Platform5" parent="Environment/Ground" instance=ExtResource( 6 )]
+position = Vector2( 565, 412 )
+
+[node name="Wall2" parent="Environment/Ground" instance=ExtResource( 11 )]
+position = Vector2( 1995, 310 )
+
+[node name="Entities" type="Node2D" parent="Environment"]
+
+[node name="Player" parent="Environment/Entities" instance=ExtResource( 1 )]
+position = Vector2( 109.506, 480.622 )
+
+[node name="Camera" type="Camera2D" parent="Environment/Entities/Player"]
+current = true
+
+[node name="TurretsSpawner" type="Position2D" parent="Environment/Entities"]
+position = Vector2( 1226.72, 27.3184 )
+script = ExtResource( 5 )
+turret_scene = ExtResource( 4 )
+extents = Vector2( 300, -350 )
+
+[node name="Turret" parent="Environment/Entities/TurretsSpawner" instance=ExtResource( 4 )]
+position = Vector2( 338.423, 473.544 )
+
+[node name="Obstacles" type="Node2D" parent="Environment/Entities"]
+
+[node name="Obstacle" parent="Environment/Entities/Obstacles" instance=ExtResource( 9 )]
+position = Vector2( 1453.68, 189.419 )
+
+[node name="Obstacle2" parent="Environment/Entities/Obstacles" instance=ExtResource( 9 )]
+position = Vector2( 411, 389 )
+
+[node name="Obstacle3" parent="Environment/Entities/Obstacles" instance=ExtResource( 9 )]
+position = Vector2( 793, 514 )
+mass = 20.0
+
+[node name="Obstacle4" parent="Environment/Entities/Obstacles" instance=ExtResource( 9 )]
+position = Vector2( 556, 325 )
+
+[node name="Obstacle5" parent="Environment/Entities/Obstacles" instance=ExtResource( 9 )]
+position = Vector2( 1000, 510 )
+
+[node name="Trophy" parent="Environment/Entities" instance=ExtResource( 8 )]
+position = Vector2( 1369, 95 )
