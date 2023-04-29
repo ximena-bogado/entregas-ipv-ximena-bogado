@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/background.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://entities/enemies/TurretsSpawner.gd" type="Script" id=5]
 [ext_resource path="res://entities/world/Floor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/world/Cube.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/world/FloatingFloor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://CanvasLayer.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -40,7 +42,21 @@ position = Vector2( 1200, 515 )
 [node name="Floor3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2000, 515 )
 
+[node name="FloatingFloor3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1355, 305 )
+
+[node name="FloatingFloor2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 799, 270 )
+
+[node name="FloatingFloor" parent="." instance=ExtResource( 8 )]
+position = Vector2( 555, 311 )
+
 [node name="Cube" parent="." instance=ExtResource( 7 )]
+position = Vector2( 841, 210 )
 
 [node name="Cube2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 201, 168 )
+position = Vector2( 931, 366 )
+
+[node name="CanvasLayer2" parent="." instance=ExtResource( 9 )]
+
+[connection signal="hit" from="Player" to="." method="game_over"]

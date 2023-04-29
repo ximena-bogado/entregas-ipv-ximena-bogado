@@ -2,6 +2,8 @@ extends KinematicBody2D
 class_name Player
 onready var cannon = $Cannon
 
+signal hit
+
 export (float) var ACCELERATION:float = 20.0
 export (float) var H_SPEED_LIMIT:float = 600.0
 export (float) var FRICTION_WEIGHT:float = 0.1
@@ -43,3 +45,8 @@ func _physics_process(delta):
 	_get_input()
 	velocity.y += GRAVITY
 	move_and_slide(velocity, Vector2.UP)
+
+func _on_DetectionArea_area_entered(area: Area2D):
+	queue_free()
+	emit_signal("hit")
+
