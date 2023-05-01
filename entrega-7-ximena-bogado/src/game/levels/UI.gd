@@ -2,6 +2,7 @@ extends CanvasLayer
 
 onready var pause_popup: Node = $Menus/PausePopup
 onready var defeat_popup: Node = $Menus/DefeatPopup
+onready var victory_popup: Node = $Menus/VictoryPopup
 signal exit
 signal restart_level
 
@@ -27,3 +28,6 @@ func _on_player_died():
 func _on_RestartLevelButton_pressed():
 	defeat_popup.hide()
 	emit_signal("restart_level")
+	
+func _on_player_win():
+	victory_popup.show()

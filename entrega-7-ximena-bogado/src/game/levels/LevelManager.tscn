@@ -106,6 +106,36 @@ text = "Defeat"
 align = 1
 valign = 1
 
+[node name="VictoryPopup" type="PopupMenu" parent="UI/Menus"]
+pause_mode = 2
+margin_left = 274.0
+margin_top = 189.0
+margin_right = 491.0
+margin_bottom = 392.0
+
+[node name="NextButton" type="Button" parent="UI/Menus/VictoryPopup"]
+margin_left = 50.0
+margin_top = 61.0
+margin_right = 168.0
+margin_bottom = 81.0
+text = "Next"
+
+[node name="ExitButton" type="Button" parent="UI/Menus/VictoryPopup"]
+margin_left = 50.0
+margin_top = 98.0
+margin_right = 168.0
+margin_bottom = 118.0
+text = "Salir"
+
+[node name="RichTextLabel" type="Label" parent="UI/Menus/VictoryPopup"]
+margin_left = 2.0
+margin_top = 24.0
+margin_right = 214.0
+margin_bottom = 49.0
+text = "Victory"
+align = 1
+valign = 1
+
 [node name="CurrentLevelContainer" type="Node" parent="."]
 
 [connection signal="exit" from="UI" to="." method="_on_UI_exit"]
@@ -116,3 +146,4 @@ valign = 1
 [connection signal="pressed" from="UI/Menus/PausePopup/ExitButton" to="UI" method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="UI/Menus/DefeatPopup/RestartLevelButton" to="UI" method="_on_RestartLevelButton_pressed"]
 [connection signal="pressed" from="UI/Menus/DefeatPopup/ExitButton" to="UI" method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="UI/Menus/VictoryPopup/ExitButton" to="UI" method="_on_ExitButton_pressed"]

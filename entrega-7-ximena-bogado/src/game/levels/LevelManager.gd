@@ -25,6 +25,7 @@ func _setup_level(id: int) -> void:
 		
 		level_instance.player.connect("hit",gui, "change_heart_bar")
 		level_instance.player.connect("dead",ui, "_on_player_died")
+		level_instance.player.connect("win",ui, "_on_player_win")
 		gui.connect("player_died",level_instance.player, "die")
 
 ## Hint: for pause check the SceneTree.paused property.

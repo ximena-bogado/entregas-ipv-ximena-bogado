@@ -11,3 +11,4 @@ onready var player:Node = $Environment/Entities/Player
 
 func _ready() -> void:
 	randomize()
+	

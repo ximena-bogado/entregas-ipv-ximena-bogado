@@ -19,6 +19,7 @@ export (int) var gravity = 10
 
 signal hit
 signal dead
+signal win
 
 var projectile_container
 
@@ -109,6 +110,10 @@ func _remove() -> void:
 	set_physics_process(false)
 	hide()
 	collision_layer = 0
+	
+func win() -> void:
+	emit_signal("win")
+	_remove()
 
 
 func is_on_floor()->bool:
