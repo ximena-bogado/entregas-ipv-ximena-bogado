@@ -17,6 +17,8 @@ export (int) var jump_speed = 500
 export (float) var FRICTION_WEIGHT:float = 0.1
 export (int) var gravity = 10
 
+signal hit
+
 var projectile_container
 
 var velocity:Vector2 = Vector2.ZERO
@@ -95,9 +97,10 @@ func _physics_process(delta) -> void:
 ## Gotta add hp here. To communicate with the UI to handle the data, you can either
 ## propagate some "hit"/"hp_changed" signal via Level, or you can use Autoload/Singletons.
 func notify_hit() -> void:
-	print("I'm player and imma die")
-	dead = true
-	_change_animation("dead")
+	emit_signal("hit")
+	##print("I'm player and imma die")
+	##dead = true
+	##_change_animation("dead")
 
 
 func _remove() -> void:

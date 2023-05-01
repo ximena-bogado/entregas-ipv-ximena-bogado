@@ -2,6 +2,7 @@ extends Node
 
 export (Array, PackedScene) var levels: Array
 onready var current_level_container: Node = $CurrentLevelContainer
+onready var gui: Control = $UI/GUI
 
 func _ready() -> void:
 	initialize()
@@ -20,12 +21,9 @@ func _setup_level(id: int) -> void:
 		
 		var level_instance: GameLevel = levels[id].instance()
 		current_level_container.add_child(level_instance)
-
+		level_instance.player.connect("hit",gui, "change_heart_bar")
 
 ## Hint: for pause check the SceneTree.paused property.
-
-
-
 func _on_UI_exit():
-	
 	get_tree().change_scene("res://src/screens/MainMenu.tscn")
+	

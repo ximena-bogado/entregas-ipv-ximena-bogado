@@ -1,6 +1,8 @@
 extends Node
 class_name GameLevel
 
+onready var player:Node = $Environment/Entities/Player
+
 
 ## You shouldn't load this scene directly, the LevelManager should do that for you.
 
