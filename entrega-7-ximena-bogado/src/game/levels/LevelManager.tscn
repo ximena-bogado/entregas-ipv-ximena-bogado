@@ -31,8 +31,12 @@ script = ExtResource( 3 )
 heart_bar_path = NodePath("TextureProgress")
 
 [node name="TextureProgress" type="TextureProgress" parent="UI/GUI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 0.028
+anchor_bottom = 0.041
+margin_left = 11.0
+margin_top = 10.0
+margin_right = 46.0
+margin_bottom = 45.0
 value = 100.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 7 )
@@ -42,30 +46,73 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="PausePopup" type="PopupMenu" parent="UI"]
+[node name="PausePopup" type="PopupMenu" parent="UI/Menus"]
 pause_mode = 2
 margin_left = 274.0
 margin_top = 189.0
 margin_right = 491.0
 margin_bottom = 392.0
 
-[node name="RestartButton" type="Button" parent="UI/PausePopup"]
+[node name="RestartButton" type="Button" parent="UI/Menus/PausePopup"]
 margin_left = 50.0
 margin_top = 61.0
 margin_right = 168.0
 margin_bottom = 81.0
 text = "Reanudar"
 
-[node name="ExitButton" type="Button" parent="UI/PausePopup"]
+[node name="ExitButton" type="Button" parent="UI/Menus/PausePopup"]
 margin_left = 50.0
 margin_top = 98.0
 margin_right = 168.0
 margin_bottom = 118.0
 text = "Salir"
 
+[node name="RichTextLabel" type="Label" parent="UI/Menus/PausePopup"]
+margin_left = 2.0
+margin_top = 24.0
+margin_right = 214.0
+margin_bottom = 49.0
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="DefeatPopup" type="PopupMenu" parent="UI/Menus"]
+pause_mode = 2
+margin_left = 274.0
+margin_top = 189.0
+margin_right = 491.0
+margin_bottom = 392.0
+
+[node name="RestartLevelButton" type="Button" parent="UI/Menus/DefeatPopup"]
+margin_left = 50.0
+margin_top = 61.0
+margin_right = 168.0
+margin_bottom = 81.0
+text = "Reanudar"
+
+[node name="ExitButton" type="Button" parent="UI/Menus/DefeatPopup"]
+margin_left = 50.0
+margin_top = 98.0
+margin_right = 168.0
+margin_bottom = 118.0
+text = "Salir"
+
+[node name="RichTextLabel" type="Label" parent="UI/Menus/DefeatPopup"]
+margin_left = 2.0
+margin_top = 24.0
+margin_right = 214.0
+margin_bottom = 49.0
+text = "Defeat"
+align = 1
+valign = 1
+
 [node name="CurrentLevelContainer" type="Node" parent="."]
 
 [connection signal="exit" from="UI" to="." method="_on_UI_exit"]
+[connection signal="restart_level" from="UI" to="." method="_on_UI_restart_level"]
 [connection signal="pressed" from="UI/PauseButton" to="UI" method="_on_PauseButton_pressed"]
-[connection signal="pressed" from="UI/PausePopup/RestartButton" to="UI" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="UI/PausePopup/ExitButton" to="UI" method="_on_ExitButton_pressed"]
+[connection signal="player_died" from="UI/GUI" to="UI" method="_on_GUI_player_died"]
+[connection signal="pressed" from="UI/Menus/PausePopup/RestartButton" to="UI" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="UI/Menus/PausePopup/ExitButton" to="UI" method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="UI/Menus/DefeatPopup/RestartLevelButton" to="UI" method="_on_RestartLevelButton_pressed"]
+[connection signal="pressed" from="UI/Menus/DefeatPopup/ExitButton" to="UI" method="_on_ExitButton_pressed"]

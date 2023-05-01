@@ -18,6 +18,7 @@ export (float) var FRICTION_WEIGHT:float = 0.1
 export (int) var gravity = 10
 
 signal hit
+signal dead
 
 var projectile_container
 
@@ -98,10 +99,11 @@ func _physics_process(delta) -> void:
 ## propagate some "hit"/"hp_changed" signal via Level, or you can use Autoload/Singletons.
 func notify_hit() -> void:
 	emit_signal("hit")
-	##print("I'm player and imma die")
-	##dead = true
-	##_change_animation("dead")
 
+func die() -> void:
+	print("I'm player and imma die")
+	dead = true
+	_change_animation("dead")
 
 func _remove() -> void:
 	set_physics_process(false)
@@ -125,3 +127,4 @@ func _change_animation(anim_name: String) -> void:
 func _on_BodyAnimations_animation_finished(anim_name: String) -> void:
 	if anim_name == "dead":
 		call_deferred("_remove")
+		emit_signal("dead")
