@@ -59,19 +59,19 @@ func _physics_process(delta: float) -> void:
 				fire_timer.start()
 		elif !fire_timer.is_stopped():
 			fire_timer.stop()
-	if !path.empty():
-		var next_point:Vector2 = to_local(path.front( ))
-		while !path.empty() && position.distance_to(next_point) < 2:
-			next_point = path.front()
-			path.pop_front()
 			
-		if position.distance_to(next_point) > 5:
-			velocity.x += clamp(velocity.x + (next_point - position).normalized().x  * speed, -max_speed, max_speed)
-		else:
-			path.pop_front() 
-	
-	velocity.y += 20
-	velocity = move_and_slide(velocity, Vector2.UP)
+	if !path.empty():
+		var next_point:Vector2 = path.front()
+		while !path.empty() && self.global_position.distance_to(next_point) < 5:
+			path.pop_front()
+			if !path.empty():
+				next_point = path.front()
+				
+		
+		velocity.x += clamp(velocity.x + global_position.direction_to(next_point).x * speed, -max_speed, max_speed)
+			
+		velocity.y += 20
+		velocity = move_and_slide(velocity)
 
 
 func notify_hit(amount: int = 1) -> void:

@@ -5,4 +5,5 @@ func enter() -> void:
 	character._remove()
 
 
-
+func update(delta):
+	character._apply_movement()

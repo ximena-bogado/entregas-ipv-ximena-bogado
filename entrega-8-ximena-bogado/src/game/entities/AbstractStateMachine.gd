@@ -34,6 +34,7 @@ func _initialize() -> void:
 		var ch: Node = get_node_or_null(character_path)
 		if ch != null:
 			self.character = ch
+	initialize(get_node(START_STATE))
 
 
 func _set_character(_character: Node) -> void:
