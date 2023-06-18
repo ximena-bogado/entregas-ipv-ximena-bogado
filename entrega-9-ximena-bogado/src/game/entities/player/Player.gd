@@ -20,6 +20,7 @@ onready var floor_raycasts: Array = $FloorRaycasts.get_children()
 onready var body_animations: AnimationPlayer = $BodyAnimations
 onready var effects_animation: AnimationPlayer = $EffectsAnimations
 onready var dash_cooldown: Timer = $DashCooldown
+onready var player_sfx: AudioStreamPlayer = $PlayerSfx
 
 export (int) var max_hp: int = 1
 onready var current_hp: int = max_hp
@@ -29,6 +30,8 @@ export (float) var H_SPEED_LIMIT:float = 400.0
 export (float) var jump_speed: float = 1000
 export (float) var FRICTION_WEIGHT: float = 0.1
 export (float) var gravity: float = 30
+export (AudioStream) var fire_sfx
+export (AudioStream) var hurt_sfx
 
 var projectile_container
 
@@ -81,6 +84,7 @@ func _handle_cannon_actions():
 			projectile_container = get_parent()
 			cannon.projectile_container = projectile_container
 		cannon.fire()
+		play_fire_audio()
 
 
 func _apply_movement():
@@ -96,6 +100,7 @@ func notify_hit(amount: int = 1) -> void:
 
 func _handle_hit(amount: int) -> void:
 	current_hp -= amount
+	play_hurt_audio()
 	emit_signal("hp_changed", current_hp, max_hp)
 	
 	slime.self_modulate = lerp(Color.white, Color.red, 1.0 - (float(current_hp) / max_hp))
@@ -124,7 +129,6 @@ func is_on_floor()->bool:
 		is_colliding = is_colliding || raycast.is_colliding()
 	return is_colliding
 
-
 func _is_animation_playing(animation_name:String)->bool:
 	return body_animations.current_animation == animation_name && body_animations.is_playing()
 
@@ -135,4 +139,13 @@ func _play_animation(animation_name:String, should_restart:bool = true, playback
 			body_animations.stop()
 		body_animations.playback_speed = playback_speed
 		body_animations.play(animation_name)
+		
+func play_fire_audio():
+	player_sfx.stream = fire_sfx
+	player_sfx.play()
+	
+func play_hurt_audio():
+	player_sfx.stream = hurt_sfx
+	player_sfx.play()
+	
 

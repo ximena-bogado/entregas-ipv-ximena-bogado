@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/game/enviroment/backgrounds/ForestParallax.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/enviroment/Ground.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/game/enviroment/HealingGem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/game/entities/AstarTilemap.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/game/enviroment/Killzone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sound/bgm/bgm.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/game/enviroment/Trophy.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/game/enviroment/Platform.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/game/entities/enemies/Cat.tscn" type="PackedScene" id=20]
@@ -144,3 +145,8 @@ position = Vector2( 4480, 1109 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Entities/Killzones/Killzone"]
 shape = SubResource( 1 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+bus = "Background"
